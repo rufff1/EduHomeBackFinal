@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Manage\Data\**" />
+    <Compile Remove="Areas\Manage\Models\**" />
+    <Content Remove="Areas\Manage\Data\**" />
+    <Content Remove="Areas\Manage\Models\**" />
+    <EmbeddedResource Remove="Areas\Manage\Data\**" />
+    <EmbeddedResource Remove="Areas\Manage\Models\**" />
+    <None Remove="Areas\Manage\Data\**" />
+    <None Remove="Areas\Manage\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20221209204657_CreateTeacherAndRelationTables.cs" />
+    <Compile Remove="Migrations\20221209204657_CreateTeacherAndRelationTables.Designer.cs" />
+    <Compile Remove="Migrations\20221211130500_CreatedEventAndRelationTables.cs" />
+    <Compile Remove="Migrations\20221211130500_CreatedEventAndRelationTables.Designer.cs" />
+    <Compile Remove="Migrations\20221211131106_CreatedEventAndRelationTables.cs" />
+    <Compile Remove="Migrations\20221211131106_CreatedEventAndRelationTables.Designer.cs" />
+    <Compile Remove="Migrations\20221211155527_CreatedWelcomeCourseTable.cs" />
+    <Compile Remove="Migrations\20221211155527_CreatedWelcomeCourseTable.Designer.cs" />
+    <Compile Remove="Migrations\20221211160645_CreatedNoticeBoardTable.cs" />
+    <Compile Remove="Migrations\20221211160645_CreatedNoticeBoardTable.Designer.cs" />
+    <Compile Remove="Migrations\20221211165901_CreatedNoticeRightTable.cs" />
+    <Compile Remove="Migrations\20221211165901_CreatedNoticeRightTable.Designer.cs" />
+    <Compile Remove="Migrations\20221211171312_CreatedWhyEduHomeTable.cs" />
+    <Compile Remove="Migrations\20221211171312_CreatedWhyEduHomeTable.Designer.cs" />
+    <Compile Remove="Migrations\20221211172930_CreatedTestimionalTable.cs" />
+    <Compile Remove="Migrations\20221211172930_CreatedTestimionalTable.Designer.cs" />
+    <Compile Remove="Migrations\20221212163050_BlogEventAddCategoryIDColumn.cs" />
+    <Compile Remove="Migrations\20221212163050_BlogEventAddCategoryIDColumn.Designer.cs" />
+    <Compile Remove="Migrations\20221212163745_BlogEventModified.cs" />
+    <Compile Remove="Migrations\20221212163745_BlogEventModified.Designer.cs" />
+    <Compile Remove="Migrations\20221212164216_EventBlogCategoryIDAddColumn.cs" />
+    <Compile Remove="Migrations\20221212164216_EventBlogCategoryIDAddColumn.Designer.cs" />
+    <Compile Remove="Migrations\20221212164448_check.cs" />
+    <Compile Remove="Migrations\20221212164448_check.Designer.cs" />
+    <Compile Remove="Migrations\20221212164731_check.cs" />
+    <Compile Remove="Migrations\20221212164731_check.Designer.cs" />
+    <Compile Remove="Migrations\20221212164945_check.cs" />
+    <Compile Remove="Migrations\20221212164945_check.Designer.cs" />
+    <Compile Remove="Migrations\20221212170342_check.cs" />
+    <Compile Remove="Migrations\20221212170342_check.Designer.cs" />
+    <Compile Remove="Migrations\20221212170907_UpdatedCourseCategoryRelation.cs" />
+    <Compile Remove="Migrations\20221212170907_UpdatedCourseCategoryRelation.Designer.cs" />
+    <Compile Remove="Migrations\20221212171101_UpdatedCourseCategoryRelation.cs" />
+    <Compile Remove="Migrations\20221212171101_UpdatedCourseCategoryRelation.Designer.cs" />
+    <Compile Remove="Migrations\20221212171155_UpdatedCourseCategoryRelation.cs" />
+    <Compile Remove="Migrations\20221212171155_UpdatedCourseCategoryRelation.Designer.cs" />
+    <Compile Remove="Migrations\20221212171601_UpdatedCourseCategoryRelation.cs" />
+    <Compile Remove="Migrations\20221212171601_UpdatedCourseCategoryRelation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.31" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.31">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>
