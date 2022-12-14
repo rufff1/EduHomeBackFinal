@@ -13,6 +13,6 @@ namespace EduHome.ViewModels
         public IEnumerable<Tag> Tags { get; set; }
         public Blog Blog { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
-        public Event Event { get; set; }
+    
     }
 }

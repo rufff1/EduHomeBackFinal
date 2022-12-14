@@ -352,3 +352,13 @@ C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Raz
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Event\TagFindEvent.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Blog\CategoryFindBlog.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Blog\TagFindBlog.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Create.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Update.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Category\Details.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Blog\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Blog\Detail.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Blog\Create.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Create.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Detail.cshtml.g.cs

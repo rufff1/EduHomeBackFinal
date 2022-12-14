@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,7 +50,20 @@ namespace EduHome.Model
 
         public IEnumerable<TeacherHobbie> TeacherHobbies { get; set; }
         public IEnumerable<TeacherSkill> TeacherSkills { get; set; }
-     
+
+
+        //admin panel
+
+        [NotMapped]
+        [MaxLength(4)]
+        public IEnumerable<int> SkillIds { get; set; }
+        [NotMapped]
+        [MaxLength(3)]
+        public IEnumerable<int> HobbyIds { get; set; }
+        [NotMapped]
+        [Required]
+        public IFormFile ImageFile { get; set; }
+
 
     }
 }

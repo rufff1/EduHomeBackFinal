@@ -37,9 +37,9 @@ namespace EduHome.Controllers
                 .Include(b=> b.BlogTags)
                 .ThenInclude(bt=> bt.Tag)
                 .FirstOrDefaultAsync(b => b.IsDeleted == false && b.Id == id),
-                CourseCategories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync(),
-                Tags = _context.Tags.Include(t => t.BlogTags).ThenInclude(ev => ev.Blog).ToList(),
-                Blogs = await _context.Blogs.Where(b => b.IsDeleted == false).ToListAsync(),
+                 CourseCategories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync(),
+                 Tags = _context.Tags.Include(t => t.BlogTags).ThenInclude(ev => ev.Blog).ToList(),
+                 Blogs = await _context.Blogs.Where(b => b.IsDeleted == false).ToListAsync(),
             };
 
             if (!await _context.Blogs.AnyAsync(b=> b.Id == id))
