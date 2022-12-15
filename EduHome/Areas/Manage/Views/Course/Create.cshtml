@@ -1,0 +1,117 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Create";
+
+    IEnumerable<CourseCategory> categories = ViewBag.Categories;
+    SelectList selectListCategory = new SelectList(categories, nameof(CourseCategory.Id), nameof(CourseCategory.Name));
+    IEnumerable<Tag> tags = ViewBag.Tags;
+    SelectList selectListTag = new SelectList(tags, nameof(Tag.Id), nameof(Tag.Name));
+    IEnumerable<CourseFeatures> courseFeatures = ViewBag.Features;
+  
+}
+
+
+
+<h4>Create Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.Assesments" class="control-label"></label>
+                <input asp-for="CourseFeatures.Assesments" class="form-control" />
+                <span asp-validation-for="CourseFeatures.Assesments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.ClassDuration" class="control-label"></label>
+                <input asp-for="CourseFeatures.ClassDuration" class="form-control" />
+                <span asp-validation-for="CourseFeatures.ClassDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.Duration" class="control-label"></label>
+                <input asp-for="CourseFeatures.Duration" class="form-control" />
+                <span asp-validation-for="CourseFeatures.Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.Launguage" class="control-label"></label>
+                <input asp-for="CourseFeatures.Launguage" class="form-control" />
+                <span asp-validation-for="CourseFeatures.Launguage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.Price" class="control-label"></label>
+                <input asp-for="CourseFeatures.Price" class="form-control" />
+                <span asp-validation-for="CourseFeatures.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.SkillLevel" class="control-label"></label>
+                <input asp-for="CourseFeatures.SkillLevel" class="form-control" />
+                <span asp-validation-for="CourseFeatures.SkillLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.Starts" class="control-label"></label>
+                <input asp-for="CourseFeatures.Starts" class="form-control" />
+                <span asp-validation-for="CourseFeatures.Starts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseFeatures.StudentsCount" class="control-label"></label>
+                <input asp-for="CourseFeatures.StudentsCount" class="form-control" />
+                <span asp-validation-for="CourseFeatures.StudentsCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <input asp-for="About" class="form-control" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HowToApply" class="control-label"></label>
+                <input asp-for="HowToApply" class="form-control" />
+                <span asp-validation-for="HowToApply" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CERTIFICATION" class="control-label"></label>
+                <input asp-for="CERTIFICATION" class="form-control" />
+                <span asp-validation-for="CERTIFICATION" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveReply" class="control-label"></label>
+                <input asp-for="LeaveReply" class="form-control" />
+                <span asp-validation-for="LeaveReply" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagIds" class="control-label"></label>
+                <select asp-for="TagIds" class="form-control" asp-items="selectListTag"></select>
+                <span asp-validation-for="TagIds" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CourseCategoryId" class="control-label"></label>
+                <select asp-for="CourseCategoryId" class="form-control" asp-items="selectListCategory"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+

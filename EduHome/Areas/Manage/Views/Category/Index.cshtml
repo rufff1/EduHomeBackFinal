@@ -42,7 +42,7 @@
                 <td>
                     <a asp-controller="category" asp-action="update" asp-route-id="@item.Id" class="btn btn-dark">Update</a> |
                     <a asp-controller="category" asp-action="Details" asp-route-id="@item.Id" class="btn btn-dark">Details</a> |
-                    <a asp-controller="category" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark delete-btn">Delete</a>
+                    <a asp-controller="category" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-dark delete-btn delete-btn">Delete</a>
                 </td>
             </tr>
         }
@@ -96,13 +96,15 @@
                     fetch(link).then(response => response.json()).then(data => {
                         if (data.status == 200) {
                             location.reload(true)
-                        } else {
+                        } else if(data.status == 400){
                             Swal.fire(
-                                'Not found!',
-                                'Your file can not be deleted.',
-                                'Failed'
+                                'Silmek olmaz!',
+                                'Bu categoriyaya bagli Datalar var.'
                             )
                         }
+
+
+
                     }
                     );
                 }

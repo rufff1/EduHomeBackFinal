@@ -131,6 +131,7 @@ namespace EduHome.Migrations
                         .HasMaxLength(150);
 
                     b.Property<string>("QuatoDescrpt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateAt")
@@ -392,9 +393,6 @@ namespace EduHome.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EventId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -410,8 +408,6 @@ namespace EduHome.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("EventId");
 
                     b.HasIndex("TagId");
 
@@ -566,43 +562,6 @@ namespace EduHome.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("EventTags");
-                });
-
-            modelBuilder.Entity("EduHome.Model.Hobbie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime?>("UpdateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hobbies");
                 });
 
             modelBuilder.Entity("EduHome.Model.NoticeBoard", b =>
@@ -952,8 +911,12 @@ namespace EduHome.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Hobby")
                         .IsRequired()
+                        .HasColumnType("nvarchar(90)")
+                        .HasMaxLength(90);
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300);
 
@@ -991,49 +954,6 @@ namespace EduHome.Migrations
                     b.HasIndex("TeacherPositionId");
 
                     b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("EduHome.Model.TeacherHobbie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreatAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HobbieId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdateBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HobbieId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeacherHobbies");
                 });
 
             modelBuilder.Entity("EduHome.Model.TeacherPosition", b =>
@@ -1433,10 +1353,6 @@ namespace EduHome.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EduHome.Model.Event", null)
-                        .WithMany("CourseTags")
-                        .HasForeignKey("EventId");
-
                     b.HasOne("EduHome.Model.Tag", "Tag")
                         .WithMany("CourseTags")
                         .HasForeignKey("TagId")
@@ -1469,7 +1385,7 @@ namespace EduHome.Migrations
             modelBuilder.Entity("EduHome.Model.EventTag", b =>
                 {
                     b.HasOne("EduHome.Model.Event", "Event")
-                        .WithMany()
+                        .WithMany("EventTags")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1486,21 +1402,6 @@ namespace EduHome.Migrations
                     b.HasOne("EduHome.Model.TeacherPosition", "TeacherPosition")
                         .WithMany("Teachers")
                         .HasForeignKey("TeacherPositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EduHome.Model.TeacherHobbie", b =>
-                {
-                    b.HasOne("EduHome.Model.Hobbie", "Hobbie")
-                        .WithMany("TeacherHobbies")
-                        .HasForeignKey("HobbieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHome.Model.Teacher", "Teacher")
-                        .WithMany("TeacherHobbies")
-                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

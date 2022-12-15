@@ -206,7 +206,6 @@ C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Raz
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Event\Index.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CategoryPartialView.cshtml.g.cs
-C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LatestPostPartialView.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TagPartialView.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\Detail.cshtml.g.cs
@@ -362,3 +361,10 @@ C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Raz
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Blog\Create.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Create.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Detail.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TeacherPartialView.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_blogPartialView.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CoursePartialView.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Teacher\Update.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Blog\Update.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Course\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Course\Create.cshtml.g.cs

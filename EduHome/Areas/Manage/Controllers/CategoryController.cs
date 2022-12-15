@@ -166,16 +166,27 @@ namespace EduHome.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
-            CourseCategory courseCategory = await _context.CourseCategories
-                .Include(c => c.Events)
-                .Include(c => c.Blogs)
-                .Include(c => c.Courses)
-                .FirstOrDefaultAsync(c => c.IsDeleted == false && c.Id == id);
+
 
             if (id == null)
             {
                 return BadRequest("Id bos ola bilmez");
             }
+
+                        CourseCategory courseCategory = await _context.CourseCategories
+                .Include(c => c.Events)
+                .Include(c => c.Blogs)
+                .Include(c => c.Courses)
+                .FirstOrDefaultAsync(c => c.IsDeleted == false && c.Id == id);
+
+
+           if (courseCategory == null)
+            {
+                return NotFound("Daxil edilen Id yalnisdir");
+                
+            }
+
+
 
             if (courseCategory.Id != id)
             {
@@ -183,16 +194,12 @@ namespace EduHome.Areas.Manage.Controllers
             }
 
 
-            if (courseCategory == null)
-            {
-                return NotFound("Daxil edilen Id yalnisdir");
-            }
+            
 
             if (courseCategory.Blogs.Count() > 0 ||  courseCategory.Events.Count() > 0 || courseCategory.Courses.Count() >0)
             {
-                return BadRequest("Bu Categoriya Siline Bilmez Realtionlari oldugu sebebden");
+                return Json(new { status = 400 });
             }
-
 
             courseCategory.IsDeleted = true;
             courseCategory.DeletedAt = DateTime.UtcNow.AddHours(4);

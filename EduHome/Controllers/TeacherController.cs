@@ -38,7 +38,6 @@ namespace EduHome.Controllers
             Teacher teacher = await _context.Teachers
             .Include(t=> t.TeacherSkills).ThenInclude(ts=> ts.Skill)
             .Include(t => t.TeacherPosition)
-            .Include(t=> t.TeacherHobbies).ThenInclude(th=> th.Hobbie)
             .Include(t=> t.TeacherSkills).ThenInclude(ts=> ts.Skill)
             .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == id);
 

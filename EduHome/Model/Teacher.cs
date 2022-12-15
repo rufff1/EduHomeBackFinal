@@ -15,8 +15,10 @@ namespace EduHome.Model
         [Required]
         public string FullName { get; set; }
         [StringLength(300)]
-        [Required]
         public string Image { get; set; }
+        [StringLength(90)]
+        [Required]
+        public string Hobby { get; set; }
         [Required]
         [StringLength(1000)]
         public string About { get; set; }
@@ -46,9 +48,6 @@ namespace EduHome.Model
         public int TeacherPositionId { get; set; }
 
         public TeacherPosition TeacherPosition { get; set; }
-
-
-        public IEnumerable<TeacherHobbie> TeacherHobbies { get; set; }
         public IEnumerable<TeacherSkill> TeacherSkills { get; set; }
 
 
@@ -58,10 +57,6 @@ namespace EduHome.Model
         [MaxLength(4)]
         public IEnumerable<int> SkillIds { get; set; }
         [NotMapped]
-        [MaxLength(3)]
-        public IEnumerable<int> HobbyIds { get; set; }
-        [NotMapped]
-        [Required]
         public IFormFile ImageFile { get; set; }
 
 

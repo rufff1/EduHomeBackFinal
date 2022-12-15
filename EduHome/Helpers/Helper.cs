@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,14 +9,20 @@ namespace EduHome.Helpers
 {
     public class Helper
     {
-        public static void DeleteImg(string root, string folder, string imageName)
+        public static void DeleteFile(IWebHostEnvironment env, string fileName, params string[] folders)
         {
+            string path = env.WebRootPath;
 
-
-            string fullPath = Path.Combine(root, folder, imageName);
-            if (File.Exists(fullPath))
+            foreach (string folder in folders)
             {
-                File.Delete(fullPath);
+                path = Path.Combine(path, folder);
+            }
+
+            path = Path.Combine(path, fileName);
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
             }
         }
     }

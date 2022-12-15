@@ -1,5 +1,6 @@
 ﻿using EduHome.Dal;
 using EduHome.Extensions;
+using EduHome.Helpers;
 using EduHome.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -97,7 +98,7 @@ namespace EduHome.Areas.Manage.Controllers
             {
                 if (blog.TagIds.Where(t => t == tagId).Count() > 1)
                 {
-                    ModelState.AddModelError("TagId", "bir tagdan yalniz bir defe secilmelidir");
+                    ModelState.AddModelError("TagIds", "bir tagdan yalniz bir defe secilmelidir");
                     return View(blog);
 
                 }
@@ -140,7 +141,7 @@ namespace EduHome.Areas.Manage.Controllers
             }
 
 
-            blog.Image = blog.ImageFile.CreateImage(_env, "assets/img/blog");
+            blog.Image = blog.ImageFile.CreateImage(_env, "assets","img","blog");
             blog.BlogTags = blogTags;
             blog.CreatBy = "System";
             blog.CreatAt = DateTime.UtcNow.AddHours(4);
@@ -150,6 +151,175 @@ namespace EduHome.Areas.Manage.Controllers
            
 
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
+        {
+            ViewBag.Categories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync();
+            ViewBag.Tags = await _context.Tags.Where(t => t.IsDeleted == false).ToListAsync();
+
+
+
+            if (id == null) return BadRequest("Duzgun Id daxil edin");
+
+            Blog blog = await _context.Blogs
+                .Include(t => t.BlogTags).ThenInclude(t => t.Tag)
+                .Include(t => t.CourseCategory)
+                .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == id);
+
+            if (blog == null) return NotFound("Teacher tapilmadi");
+
+
+            blog.TagIds = await _context.BlogTags.Where(bt => bt.BlogId == id).Select(x => x.BlogId).ToListAsync();
+
+
+
+
+            return View(blog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Blog blog)
+        {
+            ViewBag.Categories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync();
+            ViewBag.Tags = await _context.Tags.Where(t => t.IsDeleted == false).ToListAsync();
+
+              if (!ModelState.IsValid)
+            {
+
+                return View();
+            }
+
+            Blog existedBlog = await _context.Blogs
+              .Include(t => t.BlogTags).ThenInclude(t => t.Tag)
+              .Include(t => t.CourseCategory)
+              .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == id);
+
+            if (blog.Id != id)
+            {
+                return BadRequest("Id bos ola bilmez");
+            }
+
+            if (existedBlog == null)
+            {
+                return NotFound("Teacher tapilmadi");
+            }
+
+            if (id == null) return BadRequest("Id daxil edin");
+
+
+
+
+            _context.BlogTags.RemoveRange(existedBlog.BlogTags);
+
+            List<BlogTag> blogTags = new List<BlogTag>();
+
+            foreach (int tagId in blog.TagIds)
+            {
+                if (blog.TagIds.Where(t => t == tagId).Count() > 1)
+                {
+                    ModelState.AddModelError("TagIds", "bir tagdan yalniz bir defe secilmelidir");
+                    return View(blog);
+
+                }
+
+                if (!await _context.Tags.AnyAsync(t => t.IsDeleted == false && t.Id == tagId))
+                {
+                    ModelState.AddModelError("TagIds", "secilen tag yalnisdir");
+                    return View(blog);
+                }
+
+                BlogTag blogTag = new BlogTag
+                {
+                    CreatAt = DateTime.UtcNow.AddHours(+4),
+                    CreatBy = "System",
+                    IsDeleted = false,
+                    TagId = tagId
+
+                };
+
+                
+                blogTags.Add(blogTag);
+            }
+
+
+            if (blog.ImageFile == null)
+            {
+                ModelState.AddModelError("ImageFile", "Image daxil edin");
+                return View();
+            }
+
+            if (!blog.ImageFile.CheckFileSize(1000))
+            {
+                ModelState.AddModelError("ImageFile", "Image olcusu 1mb cox olmamalidir");
+                return View();
+            }
+            if (!blog.ImageFile.CheckFileType("image/jpeg"))
+            {
+                ModelState.AddModelError("ImageFile", "image jpeg tipinnen fayl secin! ");
+                return View();
+            }
+
+
+            Helper.DeleteFile(_env, existedBlog.Image, "assets", "img", "teacher");
+            blog.Image = blog.ImageFile.CreateImage(_env, "assets", "img", "blog");
+            existedBlog.BlogTags = blogTags;
+            existedBlog.Author = blog.Author;
+            existedBlog.CourseCategoryId = blog.CourseCategoryId;
+            existedBlog.Description = blog.Description;
+            existedBlog.Name = blog.Name;
+            existedBlog.QuatoDescrpt = blog.QuatoDescrpt;
+            existedBlog.UpdateAt = DateTime.UtcNow.AddHours(4);
+            existedBlog.UpdateBy = "System";
+            existedBlog.IsDeleted = false;
+
+            await _context.SaveChangesAsync();
+
+
+
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest("Id bos ola bilmez");
+            }
+
+
+              Blog blog = await _context.Blogs
+              .Include(t => t.BlogTags).ThenInclude(t => t.Tag)
+              .Include(t => t.CourseCategory)
+              .FirstOrDefaultAsync(t => t.IsDeleted == false && t.Id == id);
+
+            if (blog == null)
+            {
+                return NotFound("Daxil edilen Id yalnisdir");
+
+            }
+
+
+
+            if (blog.Id != id)
+            {
+                return BadRequest("Id bos ola bilmez");
+            }
+
+
+            blog.IsDeleted = true;
+            blog.DeletedAt = DateTime.UtcNow.AddHours(4);
+            blog.DeletedBy = "System";
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("index");
+
         }
 
     }

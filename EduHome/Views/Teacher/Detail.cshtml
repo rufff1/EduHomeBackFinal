@@ -40,16 +40,15 @@
                     <ul>
                         <li><span>degree: </span>@Model.Degree</li>
                         <li><span>experience: </span>@Model.Experience</li>
-                            @if (Model.TeacherHobbies.Count() > 0)
+                            @if (Model.Hobby.Count() > 0)
                            
                              {
                                  <li>
                                  <span>hobbies: </span>
-                                       @foreach (TeacherHobbie teacherHobbie in Model.TeacherHobbies)
-                                          {
-                                            @(teacherHobbie.Hobbie.Name + " , " )
 
-                                           }
+                                            @(Model.Hobby )
+
+                                      
 
 
                                   </li>

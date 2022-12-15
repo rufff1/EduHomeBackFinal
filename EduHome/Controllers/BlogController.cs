@@ -19,10 +19,16 @@ namespace EduHome.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Blogs.Count() / 3);
 
-            IEnumerable<Blog> blogs = await _context.Blogs.Where(b => b.IsDeleted == false).ToListAsync();
+            ViewBag.CurrentPage = page;
+
+            IEnumerable<Blog> blogs = await _context.Blogs
+                .Where(b => b.IsDeleted == false).Skip((page - 1) * 3).Take(3).ToListAsync();
+
+            
 
             return View(blogs);
         }

@@ -24,8 +24,6 @@ namespace EduHome.Dal
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherPosition> TeacherPositions { get; set; }
-        public DbSet<TeacherHobbie> TeacherHobbies { get; set; }
-        public DbSet<Hobbie> Hobbies { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
