@@ -19,7 +19,6 @@ namespace EduHome.Dal
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
-        public DbSet<CourseFeatures> CourseFeatures { get; set; }
         public DbSet<CourseTag> CourseTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Teacher> Teachers { get; set; }

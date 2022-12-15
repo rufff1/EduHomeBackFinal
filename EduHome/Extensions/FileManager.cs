@@ -12,7 +12,10 @@ namespace EduHome.Extensions
     {
         public static string CreateImage(this IFormFile file, IWebHostEnvironment env, params string[] folders)
         {
-            string fileName = $"{Guid.NewGuid()}_{DateTime.Now.ToString("yyyyMMddHHmmssffff")}_{file.FileName}";
+            string oldFileName = file.FileName;
+            string fileExtention = oldFileName.Split('.').Last();
+
+            string fileName = $"{Guid.NewGuid()}_{DateTime.Now.ToString("yyyyMMddHHmmssffff")}.{fileExtention}";
 
             string path = env.WebRootPath;
 

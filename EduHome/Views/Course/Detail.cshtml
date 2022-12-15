@@ -53,15 +53,15 @@
                         <div class="course-details-right">
                             <h3>COURSE FEATURES</h3>
                             <ul>
-                                <li>starts <span>@Model.Course.CourseFeatures.Starts.ToString("dd MMMM yyyy")</span></li>
-                                <li>duration <span>@Model.Course.CourseFeatures.Duration</span></li>
-                                <li>class duration <span>@Model.Course.CourseFeatures.ClassDuration</span></li>
-                                <li>skill level <span>@Model.Course.CourseFeatures.SkillLevel</span></li>
-                                <li>language <span>@Model.Course.CourseFeatures.Launguage</span></li>
-                                <li>students <span>@Model.Course.CourseFeatures.StudentsCount</span></li>
-                                <li>assesments <span>@Model.Course.CourseFeatures.Assesments</span></li>
+                                <li>starts <span>@Model.Course.Starts.ToString("M MMMM")</span></li>
+                                <li>duration <span>@Model.Course.Duration</span></li>
+                                <li>class duration <span>@Model.Course.ClassDuration</span></li>
+                                <li>skill level <span>@Model.Course.SkillLevel</span></li>
+                                <li>language <span>@Model.Course.Launguage</span></li>
+                                <li>students <span>@Model.Course.StudentsCount</span></li>
+                                <li>assesments <span>@Model.Course.Assesments</span></li>
                             </ul>
-                            <h3 class="red">course fee $@Model.Course.CourseFeatures.Price</h3>
+                            <h3 class="red">course fee $@Model.Course.Price</h3>
                         </div>
                     </div>
 

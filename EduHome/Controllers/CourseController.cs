@@ -32,7 +32,7 @@ namespace EduHome.Controllers
             {
                 Course = await _context.Courses
                 .Include(c=>c.CourseCategory)
-                .Include(c=>c.CourseFeatures)
+
                 .Include(c=> c.CourseTags).ThenInclude(ct=> ct.Tag)
                 .FirstOrDefaultAsync(c=> c.IsDeleted == false && c.Id==id),
                  CourseCategories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync(),

@@ -64,8 +64,9 @@ namespace EduHome.Areas.Manage.Controllers
         public async Task<IActionResult> Create()
         {
 
-            ViewBag.Categories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync();
-            ViewBag.Tags = await _context.Tags.Where(t => t.IsDeleted == false).ToListAsync();
+
+          ViewBag.Categories = await _context.CourseCategories.Where(c => c.IsDeleted == false).ToListAsync();
+           ViewBag.Tags = await _context.Tags.Where(t => t.IsDeleted == false).ToListAsync();
             return View();
         }
 
@@ -209,10 +210,6 @@ namespace EduHome.Areas.Manage.Controllers
             }
 
             if (id == null) return BadRequest("Id daxil edin");
-
-
-
-
             _context.BlogTags.RemoveRange(existedBlog.BlogTags);
 
             List<BlogTag> blogTags = new List<BlogTag>();
@@ -264,8 +261,8 @@ namespace EduHome.Areas.Manage.Controllers
             }
 
 
-            Helper.DeleteFile(_env, existedBlog.Image, "assets", "img", "teacher");
-            blog.Image = blog.ImageFile.CreateImage(_env, "assets", "img", "blog");
+            Helper.DeleteFile(_env, existedBlog.Image, "assets", "img", "blog");
+            existedBlog.Image = blog.ImageFile.CreateImage(_env, "assets", "img", "blog");
             existedBlog.BlogTags = blogTags;
             existedBlog.Author = blog.Author;
             existedBlog.CourseCategoryId = blog.CourseCategoryId;

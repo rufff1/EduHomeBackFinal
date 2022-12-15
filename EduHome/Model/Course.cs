@@ -27,12 +27,33 @@ namespace EduHome.Model
         public string CERTIFICATION { get; set; }
         [StringLength(1000)]
         public string LeaveReply { get; set; }
+        [StringLength(100)]
+        [Required]
+        public DateTime Starts { get; set; }
+        [StringLength(100)]
+        [Required]
+        public string Duration { get; set; }
+        [StringLength(100)]
+        [Required]
+        public string ClassDuration { get; set; }
+        [StringLength(100)]
+        [Required]
+        public string SkillLevel { get; set; }
+        [StringLength(100)]
+        [Required]
+        public string Launguage { get; set; }
+
+        public int StudentsCount { get; set; }
+        [StringLength(100)]
+        [Required]
+        public string Assesments { get; set; }
+        [Required]
+        [Column(TypeName = "money")]
+        public double Price { get; set; }
 
 
 
 
-        //public int CourseFeaturesId { get; set; }
-        public CourseFeatures CourseFeatures { get; set; }
 
         public List<CourseTag> CourseTags { get; set; }
 
