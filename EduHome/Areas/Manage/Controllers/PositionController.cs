@@ -198,6 +198,8 @@ namespace EduHome.Areas.Manage.Controllers
             {
                 return Json(new { status = 400 });
             }
+        
+       
 
             teacherPosition.IsDeleted = true;
             teacherPosition.DeletedAt = DateTime.UtcNow.AddHours(4);

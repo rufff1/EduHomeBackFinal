@@ -30,46 +30,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreatBy)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdateAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdateBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedBy)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatBy)
-                </td>
-                <td>
-                    <a class="btn btn-dark" asp-action="Update" asp-route-id="@item.Id">Update</a> |
-                    <a class="btn btn-dark" asp-action="Detail" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-dark delete-btn" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatBy)
+            </td>
+            <td>
+                <a class="btn btn-dark" asp-action="Update" asp-route-id="@item.Id">Update</a> |
+                <a class="btn btn-dark" asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-dark delete-btn" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
