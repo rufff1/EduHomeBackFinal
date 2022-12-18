@@ -24,7 +24,7 @@ namespace EduHome.Services
         }
 
 
-        public async Task<Dictionary<string, string>> GetSettings()
+        public async Task<Dictionary<string, string>> GetSettingsAsync()
         {
             return await _context.Settings.ToDictionaryAsync(s => s.Key, s => s.Value);
         }

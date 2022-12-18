@@ -54,6 +54,30 @@
     <Compile Remove="Migrations\20221212171155_UpdatedCourseCategoryRelation.Designer.cs" />
     <Compile Remove="Migrations\20221212171601_UpdatedCourseCategoryRelation.cs" />
     <Compile Remove="Migrations\20221212171601_UpdatedCourseCategoryRelation.Designer.cs" />
+    <Compile Remove="Migrations\20221217125837_CreatedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217125837_CreatedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217130448_createusertAble.cs" />
+    <Compile Remove="Migrations\20221217130448_createusertAble.Designer.cs" />
+    <Compile Remove="Migrations\20221217131310_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217131310_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217131338_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217131338_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217131719_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217131719_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217131926_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217131926_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217132155_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217132155_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217132302_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217132302_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217132425_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217132425_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217132722_AddedUsersTable.cs" />
+    <Compile Remove="Migrations\20221217132722_AddedUsersTable.Designer.cs" />
+    <Compile Remove="Migrations\20221217133218_createjscbiasdcfn.cs" />
+    <Compile Remove="Migrations\20221217133218_createjscbiasdcfn.Designer.cs" />
+    <Compile Remove="Migrations\20221218085539_IdentityTable.cs" />
+    <Compile Remove="Migrations\20221218085539_IdentityTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

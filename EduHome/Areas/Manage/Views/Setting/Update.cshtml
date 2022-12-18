@@ -28,3 +28,6 @@
     <a class="btn btn-dark" asp-action="Update" asp-route-id="@Model.Id">Update</a> |
     <a class="btn btn-dark" asp-action="Index">Back to List</a>
 </div>
+@section script{
+    @await Html.PartialAsync("_ValidationPartial")
+}

@@ -26,6 +26,26 @@ namespace EduHome.Controllers
             return View(courses);
         }
 
+        public async Task<IActionResult> Search(int? id,string search)
+        {
+
+
+            IEnumerable<SearchVM> courses = await _context.Courses
+                .Where(c=>c.Name.ToLower().Contains(search.ToLower()))
+                .OrderByDescending(p => p.Id)
+                .Take(3)
+                   .Select(x => new SearchVM
+                   {
+                       Id = x.Id,
+                       Name =x.Name,
+                       Image = x.Image
+                   })
+                   .ToListAsync();
+
+
+            return View("_CSearchPartialView", courses);
+        }
+
         public async Task<IActionResult> Detail(int? id)
         {
             CourseVM courseVM = new CourseVM

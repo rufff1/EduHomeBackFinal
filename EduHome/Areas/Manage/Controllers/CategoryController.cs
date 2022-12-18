@@ -121,16 +121,18 @@ namespace EduHome.Areas.Manage.Controllers
 
             }
 
-            if (await _context.CourseCategories.AnyAsync(c => c.IsDeleted == false && c.Name.ToLower() == courseCategory.Name.ToLower().Trim() && c.Id == id))
+            bool isExist = _context.CourseCategories.Any(c => c.Name.ToLower() == courseCategory.Name.ToLower().Trim());
+            if (isExist && !(existedCategory.Name.ToLower() == courseCategory.Name.ToLower().Trim()))
             {
-                ModelState.AddModelError("Name", $"This name {courseCategory.Name} already exists");
-                return View(courseCategory);
-
-            }
+                ModelState.AddModelError("Name", "Bu adla Category var");
+                return View();
+            };
 
             existedCategory.Name = courseCategory.Name.Trim();
-            existedCategory.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedCategory.UpdateBy = "System";
+            courseCategory.UpdateAt = DateTime.UtcNow.AddHours(4);
+            courseCategory.UpdateBy = "System";
+            courseCategory.IsDeleted = false;
+
 
             await _context.SaveChangesAsync();
 
@@ -198,7 +200,7 @@ namespace EduHome.Areas.Manage.Controllers
 
             if (courseCategory.Blogs.Count() > 0 ||  courseCategory.Events.Count() > 0 || courseCategory.Courses.Count() >0)
             {
-                return Json(new { status = 400 });
+                return BadRequest();
             }
 
             courseCategory.IsDeleted = true;
@@ -207,7 +209,7 @@ namespace EduHome.Areas.Manage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("index");
+            return RedirectToAction("index", new { status = 200 });
 
         }
 

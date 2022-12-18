@@ -121,16 +121,17 @@ namespace EduHome.Areas.Manage.Controllers
 
             }
 
-            if (await _context.Skills.AnyAsync(c => c.IsDeleted == false && c.Name.ToLower() == skill.Name.ToLower().Trim() && c.Id == id))
+            bool isExist = _context.Skills.Any(c => c.Name.ToLower() == skill.Name.ToLower().Trim());
+            if (isExist && !(existedSkill.Name.ToLower() == skill.Name.ToLower().Trim()))
             {
-                ModelState.AddModelError("Name", $"This name {skill.Name} already exists");
-                return View(skill);
-
-            }
+                ModelState.AddModelError("Name", "Bu adla Category var");
+                return View();
+            };
 
             existedSkill.Name = skill.Name.Trim();
-            existedSkill.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedSkill.UpdateBy = "System";
+            skill.UpdateAt = DateTime.UtcNow.AddHours(4);
+            skill.UpdateBy = "System";
+            skill.IsDeleted = false;
 
             await _context.SaveChangesAsync();
 

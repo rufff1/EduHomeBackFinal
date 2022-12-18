@@ -1,5 +1,7 @@
 using EduHome.Dal;
+using EduHome.Interfaces;
 using EduHome.Model;
+using EduHome.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +41,8 @@ namespace EduHome
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            //services.AddScoped<ILayoutService,LayoutService>();
+            services.AddControllersWithViews();
+            services.AddScoped<ILayoutService,LayoutService>();
             services.AddHttpContextAccessor();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -68,7 +71,6 @@ namespace EduHome
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
 
-            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,9 +85,9 @@ namespace EduHome
             app.UseStaticFiles();
 
             ////login olub olmadigini yoxluyur.
-            //app.UseAuthentication();
+            app.UseAuthentication();
             ////login olmusan neye icazen var ya yoxdu onu yoxluyur.
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EduHome.Model
 {
-    public class AppUser : IdentityUser
+    public class AppUser :IdentityUser
     {
         public string Name { get; set; }
     }

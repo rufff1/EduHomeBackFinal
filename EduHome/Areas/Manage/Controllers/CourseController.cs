@@ -105,7 +105,7 @@ namespace EduHome.Areas.Manage.Controllers
                 courseTags.Add(courseTag);
             }
 
-
+            
 
             if (course.ImageFile == null)
             {
@@ -199,12 +199,12 @@ namespace EduHome.Areas.Manage.Controllers
 
             if (existedCourse == null) return NotFound("Teacher tapilmadi");
 
-            if (await _context.Courses.AnyAsync(c => c.IsDeleted == false && c.Name.Trim() == course.Name.Trim()))
+            bool isExist = _context.Courses.Any(c => c.Name.ToLower() == course.Name.ToLower().Trim());
+            if (isExist && !(existedCourse.Name.ToLower() == course.Name.ToLower().Trim()))
             {
-                ModelState.AddModelError("Name", $"This name {course.Name} already exists");
-                return View(course);
-
-            }
+                ModelState.AddModelError("Name", "Bu adla Category var");
+                return View();
+            };
 
             _context.CourseTags.RemoveRange(existedCourse.CourseTags);
 
@@ -259,8 +259,9 @@ namespace EduHome.Areas.Manage.Controllers
             Helper.DeleteFile(_env, existedCourse.Image, "assets", "img", "course");
             existedCourse.Image = course.ImageFile.CreateImage(_env, "assets", "img", "course");
             existedCourse.CourseTags = courseTags;
-            existedCourse.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedCourse.UpdateBy = "System";
+            course.UpdateAt = DateTime.UtcNow.AddHours(4);
+            course.UpdateBy = "System";
+            course.IsDeleted = false;
             existedCourse.About = course.About;
             existedCourse.CERTIFICATION = course.CERTIFICATION;
             existedCourse.CourseCategoryId = course.CourseCategoryId;

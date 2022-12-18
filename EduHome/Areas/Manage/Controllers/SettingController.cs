@@ -55,7 +55,7 @@ namespace EduHome.Areas.Manage.Controllers
            
             if (setting.Key == "Logo")
             {
-                if (setting.File != null)
+                if (setting.File == null)
                 {
                     if (!setting.File.CheckFileSize(2000))
                     {
@@ -75,7 +75,7 @@ namespace EduHome.Areas.Manage.Controllers
       
             if (setting.Key == "FooterLogo")
             {
-                if (setting.File != null)
+                if (setting.File == null)
                 {
                     if (!setting.File.CheckFileSize(2000))
                     {

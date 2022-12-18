@@ -121,16 +121,17 @@ namespace EduHome.Areas.Manage.Controllers
 
             }
 
-            if (await _context.TeacherPositions.AnyAsync(c => c.IsDeleted == false && c.Name.ToLower() == teacherPosition.Name.ToLower().Trim() && c.Id == id))
+            bool isExist = _context.TeacherPositions.Any(c => c.Name.ToLower() == teacherPosition.Name.ToLower().Trim());
+            if (isExist && !(existedteacherPosition.Name.ToLower() == teacherPosition.Name.ToLower().Trim()))
             {
-                ModelState.AddModelError("Name", $"This name {teacherPosition.Name} already exists");
-                return View(teacherPosition);
+                ModelState.AddModelError("Name", "Bu adla Category var");
+                return View();
+            };
 
-            }
-
-            existedteacherPosition.Name = existedteacherPosition.Name.Trim();
-            existedteacherPosition.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedteacherPosition.UpdateBy = "System";
+            existedteacherPosition.Name = teacherPosition.Name.Trim();
+            teacherPosition.UpdateAt = DateTime.UtcNow.AddHours(4);
+            teacherPosition.UpdateBy = "System";
+            teacherPosition.IsDeleted = false;
 
             await _context.SaveChangesAsync();
 

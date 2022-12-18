@@ -71,9 +71,9 @@ namespace EduHome.Areas.Manage.Controllers
                 return NotFound("Daxil edilen Id yalnisdir");
             }
 
-            existednoticeRight.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existednoticeRight.UpdateBy = "System";
-            existednoticeRight.IsDeleted = false;
+            noticeRight.UpdateAt = DateTime.UtcNow.AddHours(4);
+            noticeRight.UpdateBy = "System";
+            noticeRight.IsDeleted = false;
             existednoticeRight.Title = noticeRight.Title;
             existednoticeRight.Description = noticeRight.Description;
             await _context.SaveChangesAsync();

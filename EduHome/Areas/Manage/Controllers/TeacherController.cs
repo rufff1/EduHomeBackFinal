@@ -68,12 +68,26 @@ namespace EduHome.Areas.Manage.Controllers
             }
 
 
-            if (await _context.Teachers.AnyAsync(c => c.IsDeleted == false && c.Phone.Trim() == teacher.Phone.Trim()))
+            if (await _context.Teachers.AnyAsync(c => c.Email.ToLower() == teacher.Email.ToLower().Trim()))
             {
-                ModelState.AddModelError("Phone", $"This phone {teacher.Phone} already exists");
-                return View(teacher);
-
-            }
+                ModelState.AddModelError("Name", "Bu adla email var");
+                return View();
+            };
+            if (await _context.Teachers.AnyAsync(c => c.Phone.ToLower() == teacher.Phone.ToLower().Trim()))
+            {
+                ModelState.AddModelError("Phone", "Bu adla nomre var");
+                return View();
+            };
+            if (await _context.Teachers.AnyAsync(c => c.Skype.ToLower() == teacher.Skype.ToLower().Trim()))
+            {
+                ModelState.AddModelError("", "Bu adla skype var");
+                return View();
+            };
+            if (await _context.Teachers.AnyAsync(c => c.Fblink.ToLower() == teacher.Fblink.ToLower().Trim()))
+            {
+                ModelState.AddModelError("", "Bu adla fb var");
+                return View();
+            };
 
             if (teacher.ImageFile == null)
             {
@@ -191,6 +205,19 @@ namespace EduHome.Areas.Manage.Controllers
 
             if (existedTeacher == null) return NotFound("Teacher tapilmadi");
 
+            bool isExist = _context.Teachers.Any(c => c.Phone.ToLower() == teacher.Phone.ToLower().Trim() && c.Email.ToLower().Trim()==teacher.Email.ToLower().Trim());
+            if (isExist && !(existedTeacher.Phone.ToLower() == teacher.Phone.ToLower().Trim()))
+            {
+                ModelState.AddModelError("", "Bu adla Nomre var");
+                return View();
+            };
+            if (isExist && !(existedTeacher.Email.ToLower() == teacher.Email.ToLower().Trim()))
+            {
+                ModelState.AddModelError("", "Bu adla email var");
+                return View();
+            };
+
+
             _context.TeacherSkills.RemoveRange(existedTeacher.TeacherSkills);
 
             List<TeacherSkill> teacherSkills = new List<TeacherSkill>();
@@ -247,7 +274,7 @@ namespace EduHome.Areas.Manage.Controllers
 
             Helper.DeleteFile(_env, existedTeacher.Image, "assets", "img", "teacher");
             existedTeacher.Image = teacher.ImageFile.CreateImage(_env, "assets", "img","teacher");
-            existedTeacher.FullName = teacher.FullName;
+            existedTeacher.FullName = teacher.FullName.Trim();
             existedTeacher.Experience = existedTeacher.Experience;
             existedTeacher.Email = teacher.Email;
             existedTeacher.About = teacher.About;

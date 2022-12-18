@@ -412,3 +412,9 @@ C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Raz
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Testimional\Update.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Skill\Details.cshtml.g.cs
 C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Update.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Contact\Index.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Contact\Update.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CSearchPartialView.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ESearchPartialView.cshtml.g.cs
+C:\Users\ROG\Desktop\EduHomeBackFinal-master\EduHome\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Register.cshtml.g.cs

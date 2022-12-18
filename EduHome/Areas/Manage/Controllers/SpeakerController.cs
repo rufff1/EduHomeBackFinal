@@ -158,7 +158,7 @@ namespace EduHome.Areas.Manage.Controllers
 
             Helper.DeleteFile(_env, existedSpeaker.Image, "assets", "img", "event");
             existedSpeaker.Image = speaker.ImageFile.CreateImage(_env, "assets", "img", "event");
-            existedSpeaker.FullName = speaker.FullName;
+            existedSpeaker.FullName = speaker.FullName.Trim();
             existedSpeaker.Position = speaker.Position;
             speaker.UpdateAt = DateTime.UtcNow.AddHours(4);
             speaker.IsDeleted = false;
@@ -192,6 +192,7 @@ namespace EduHome.Areas.Manage.Controllers
             {
                 return BadRequest("Id bos ola bilmez");
             }
+
 
             speaker.IsDeleted = true;
             speaker.DeletedAt = DateTime.UtcNow.AddHours(4);

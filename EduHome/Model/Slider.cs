@@ -11,7 +11,7 @@ namespace EduHome.Model
     public class Slider :BaseEntity
     {
         [StringLength(150)]
-        [Required]
+      
         public string Image { get; set; }
         [StringLength(50)]
         public string Title { get; set; }

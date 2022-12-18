@@ -145,6 +145,7 @@ namespace EduHome.Areas.Manage.Controllers
             blog.Image = blog.ImageFile.CreateImage(_env, "assets","img","blog");
             blog.BlogTags = blogTags;
             blog.CreatBy = "System";
+            blog.IsDeleted = false;
             blog.CreatAt = DateTime.UtcNow.AddHours(4);
             await _context.Blogs.AddAsync(blog);
             await _context.SaveChangesAsync();
@@ -269,9 +270,9 @@ namespace EduHome.Areas.Manage.Controllers
             existedBlog.Description = blog.Description;
             existedBlog.Name = blog.Name;
             existedBlog.QuatoDescrpt = blog.QuatoDescrpt;
-            existedBlog.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedBlog.UpdateBy = "System";
-            existedBlog.IsDeleted = false;
+            blog.UpdateAt = DateTime.UtcNow.AddHours(4);
+            blog.UpdateBy = "System";
+            blog.IsDeleted = false;
 
             await _context.SaveChangesAsync();
 

@@ -159,11 +159,11 @@ namespace EduHome.Areas.Manage.Controllers
             Helper.DeleteFile(_env, existedTestimional.Image, "assets", "img", "testimonial");
             existedTestimional.Image = testimional.ImageFile.CreateImage(_env, "assets", "img", "testimonial");
             existedTestimional.Description = testimional.Description;
-            existedTestimional.FullName = testimional.FullName;
+            existedTestimional.FullName = testimional.FullName.Trim();
             existedTestimional.Position = testimional.Position;
-            existedTestimional.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedTestimional.IsDeleted = false;
-            existedTestimional.UpdateBy = "System";
+            testimional.UpdateAt = DateTime.UtcNow.AddHours(4);
+            testimional.IsDeleted = false;
+            testimional.UpdateBy = "System";
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");

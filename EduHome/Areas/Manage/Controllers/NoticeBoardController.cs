@@ -114,9 +114,9 @@ namespace EduHome.Areas.Manage.Controllers
                 return NotFound("Daxil edilen Id yalnisdir");
             }
 
-            existednoticeBoard.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existednoticeBoard.UpdateBy = "System";
-            existednoticeBoard.IsDeleted = false;
+            noticeBoard.UpdateAt = DateTime.UtcNow.AddHours(4);
+            noticeBoard.UpdateBy = "System";
+            noticeBoard.IsDeleted = false;
             existednoticeBoard.Date = noticeBoard.Date;
             existednoticeBoard.Description = noticeBoard.Description;
             await _context.SaveChangesAsync();

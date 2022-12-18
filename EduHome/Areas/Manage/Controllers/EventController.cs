@@ -284,14 +284,15 @@ namespace EduHome.Areas.Manage.Controllers
 
             Helper.DeleteFile(_env, existedEvent.Image, "assets", "img", "event");
             existedEvent.Image = eventt.ImageFile.CreateImage(_env, "assets", "img", "event");
-            existedEvent.EventTags = eventt.EventTags;
-            existedEvent.EventSpeakers = eventt.EventSpeakers;
+            existedEvent.EventTags = eventTags;
+            existedEvent.EventSpeakers = eventSpeakers;
             existedEvent.CourseCategoryId = eventt.CourseCategoryId;
             existedEvent.MonthDay = eventt.MonthDay;
-            existedEvent.Name = eventt.Name;
+            existedEvent.Name = eventt.Name.Trim();
             existedEvent.StartTime = eventt.StartTime;
-            existedEvent.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedEvent.UpdateBy = "System";
+            eventt.UpdateAt = DateTime.UtcNow.AddHours(4);
+            eventt.UpdateBy = "System";
+            eventt.IsDeleted = false;
             existedEvent.Venue = eventt.Venue;
 
             await _context.SaveChangesAsync();
@@ -347,6 +348,7 @@ namespace EduHome.Areas.Manage.Controllers
                 return BadRequest("Id bos ola bilmez");
             }
 
+            
             eventt.IsDeleted = true;
             eventt.DeletedAt = DateTime.UtcNow.AddHours(4);
             eventt.DeletedBy = "System";

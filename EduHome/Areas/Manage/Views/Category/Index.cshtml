@@ -93,20 +93,19 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var link = $(this).attr("href");
-                    fetch(link).then(response => response.json()).then(data => {
-                        if (data.status == 200) {
-                            location.reload(true)
-                        } else if(data.status == 400){
+                    fetch(link).then(response => {
+                        if (response.ok) {
+                            Swal.fire(
+                                'Silindi!'
+                            )
+                        } else {
                             Swal.fire(
                                 'Silmek olmaz!',
                                 'Bu categoriyaya bagli Datalar var.'
                             )
                         }
-
-
-
-                    }
-                    );
+                    })
+                   
                 }
             })
         })

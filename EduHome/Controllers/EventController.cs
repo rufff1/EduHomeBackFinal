@@ -81,6 +81,26 @@ namespace EduHome.Controllers
             return View(events);
         }
 
+        public async Task<IActionResult> Search(int? id, string search)
+        {
+
+
+            IEnumerable<SearchVM> events = await _context.Events
+                .Where(c => c.Name.ToLower().Contains(search.ToLower()))
+                .OrderByDescending(p => p.Id)
+                .Take(3)
+                   .Select(x => new SearchVM
+                   {
+                       Id = x.Id,
+                       Name = x.Name,
+                       Image = x.Image
+                   })
+                   .ToListAsync();
+
+
+            return View("_ESearchPartialView", events);
+        }
+
 
     }
 }

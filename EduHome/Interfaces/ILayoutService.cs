@@ -10,6 +10,6 @@ namespace EduHome.Interfaces
 {
     public interface ILayoutService
     {
-        Task<Dictionary<string, string>> GetSettings();
+        Task<Dictionary<string, string>> GetSettingsAsync();
     }
 }

@@ -120,17 +120,17 @@ namespace EduHome.Areas.Manage.Controllers
                 return View(tag);
 
             }
-
-            if (await _context.Tags.AnyAsync(c => c.IsDeleted == false && c.Name.ToLower() == tag.Name.ToLower().Trim() && c.Id == id))
+            bool isExist = _context.Tags.Any(c => c.Name.ToLower() == tag.Name.ToLower().Trim());
+            if (isExist && !(existedTag.Name.ToLower() == tag.Name.ToLower().Trim()))
             {
-                ModelState.AddModelError("Name", $"This name {tag.Name} already exists");
-                return View(tag);
-
-            }
+                ModelState.AddModelError("Name", "Bu adla Category var");
+                return View();
+            };
 
             existedTag.Name = tag.Name.Trim();
-            existedTag.UpdateAt = DateTime.UtcNow.AddHours(4);
-            existedTag.UpdateBy = "System";
+            tag.UpdateAt = DateTime.UtcNow.AddHours(4);
+            tag.UpdateBy = "System";
+            tag.IsDeleted = false;
 
             await _context.SaveChangesAsync();
 
