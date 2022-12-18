@@ -1,6 +1,7 @@
 ﻿using EduHome.Areas.ViewModels;
 using EduHome.Dal;
 using EduHome.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,9 @@ namespace EduHome.Areas.Manage.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid)
@@ -58,35 +62,146 @@ namespace EduHome.Areas.Manage.Controllers
                 }
             }
             await _userManager.AddToRoleAsync(appUser, "Admin");
+            return RedirectToAction("Login");
+        }
 
-            return RedirectToAction("Index","Dashoard",  new {area = "manage"});
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM loginVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(loginVM);
+            }
+            AppUser appUser = await _userManager.FindByEmailAsync(loginVM.Email);
+            if (appUser == null)
+            {
+                ModelState.AddModelError("", "Email ve ya Paswoord duzgun qeyd edin");
+            }
+            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.CheckPasswordSignInAsync(appUser, loginVM.Paswoord, true);
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", "Sifreni 3 defeden artig sehf yigdiginiz ucun bloklandiniz");
+            }
+            if (!signInResult.Succeeded)
+            {
+                ModelState.AddModelError("", "Email ve ya Paswoord duzgun qeyd edin");
+            }
+            await _signInManager.PasswordSignInAsync(appUser, loginVM.Paswoord, loginVM.RemindMe, true);
+            return RedirectToAction("Index", "Dashoard", new { area = "manage" });
+
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            ProfileVM profileVM = new ProfileVM
+            {
+                Name = appUser.Name,
+                UserName = appUser.UserName,
+                Email = appUser.Email,
+            };
+
+
+            return View(profileVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Profile(ProfileVM profileVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(profileVM);
+            }
+            bool check = false;
+
+            AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (appUser.Name.ToLowerInvariant() != profileVM.Name.Trim().ToLowerInvariant() )
+            {
+                check = true;
+                appUser.Name = profileVM.Name.Trim();
+
+            }
+            if (appUser.NormalizedUserName != profileVM.UserName.Trim().ToUpperInvariant())
+            {
+                check = true;
+                appUser.UserName = profileVM.UserName.Trim();
+
+            }
+            if (appUser.NormalizedEmail != profileVM.Email.Trim().ToLowerInvariant())
+            {
+                check = true;
+                appUser.Email = profileVM.Email.Trim();
+
+            }
+            if (check)
+            {
+               IdentityResult identityResult = await _userManager.UpdateAsync(appUser);
+                if (!identityResult.Succeeded)
+                {
+                    foreach (var item in identityResult.Errors)
+                    {
+                        ModelState.AddModelError("",item.Description);
+                    }
+                    return View(profileVM);
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(profileVM.CurrentPaswoord))
+            {
+                if (!await _userManager.CheckPasswordAsync(appUser,profileVM.CurrentPaswoord))
+                {
+                    ModelState.AddModelError("CurrentPaswoord", "Sifrenizi duzgun daxil edin");
+                    return View(profileVM);
+
+                }
+                if (profileVM.NewPaswoord == profileVM.CurrentPaswoord)
+                {
+                    ModelState.AddModelError("NewPaswoord", "Yeni Sifrenizle hal-hazirdaki eynidir");
+                    return View(profileVM);
+
+                }
+                string token = await _userManager.GeneratePasswordResetTokenAsync(appUser);
+                await _userManager.ResetPasswordAsync(appUser, token, profileVM.NewPaswoord);
+            }
+
+
+            return RedirectToAction("Index", "Dashoard", new { area = "manage" });
         }
 
 
+            //public async Task<IActionResult> CreateRole()
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole {Name = "SuperAdmin" });
+            //    await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
+            //    await _roleManager.CreateAsync(new IdentityRole { Name = "Member" });
 
-        //public async Task<IActionResult> CreateRole()
-        //{
-        //    await _roleManager.CreateAsync(new IdentityRole {Name = "SuperAdmin" });
-        //    await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
-        //    await _roleManager.CreateAsync(new IdentityRole { Name = "Member" });
+            //    return Ok();
+            //}
 
-        //    return Ok();
-        //}
+            //public async Task<IActionResult> CreateSuperAdmin()
+            //{
+            //    AppUser appUser = new AppUser
+            //    {
+            //        Email = "rr.rufff@code.az",
+            //        Name = "Rufat",
+            //        UserName = "rufff"
+            //    };
 
-        //public async Task<IActionResult> CreateSuperAdmin()
-        //{
-        //    AppUser appUser = new AppUser
-        //    {
-        //        Email = "rr.rufff@code.az",
-        //        Name = "Rufat",
-        //        UserName = "rufff"
-        //    };
+            //    await _userManager.CreateAsync(appUser , "Rufff123");
+            //    await _userManager.AddToRoleAsync(appUser, "SuperAdmin");
 
-        //    await _userManager.CreateAsync(appUser , "Rufff123");
-        //    await _userManager.AddToRoleAsync(appUser, "SuperAdmin");
+            //    return Ok();
+            //}
 
-        //    return Ok();
-        //}
-        
-    }
+        }
 }
